@@ -146,17 +146,22 @@ I updated the Process constructor call to include the priority value and tested 
 Time spent:
 About 2 hours.
 
-### Entry 2 - [Date and Time]
-**What I did**:
+### Entry 2 - October 9, 2026 - around 2:00 AM
 
-**Details**:
+What I did:
+Implemented Feature 2: Context Switch Counter.
 
-**Challenges**:
+Details:
+Added a static context switch counter to SchedulerSimulation. I incremented the counter each time a process started running and displayed the total number of context switches at the end of the simulation. The final output showed 15 context switches.
 
-**Solution**:
+Challenges:
+I needed to determine the correct place to increment the counter so that it counts each time the CPU starts running a process without affecting the existing Round-Robin scheduling.
 
-**Time spent**:
+Solution:
+I placed the increment directly before currentThread.start(), then ran the full simulation to test it. I verified the result by checking how many times the processes needed CPU execution based on their burst times and time quantum.
 
+Time spent:
+About 45 minutes.
 ---
 
 ### Entry 3 - [Date and Time]
