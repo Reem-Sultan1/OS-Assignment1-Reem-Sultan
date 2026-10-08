@@ -29,11 +29,11 @@
 
 | Field | Your Answer |
 |-------|-------------|
-| **Full Name** | [Write your full name here] |
-| **Student ID** | [Write your student ID here] |
-| **University Email** | [yourid]@std.psau.edu.sa |
-| **GitHub Username** | [your-github-username] |
-| **Repository Link** | [Paste your repository link here] |
+| **Full Name** | Reem Sultan Aldosari |
+| **Student ID** | 446058146 |
+| **University Email** | 446051846@std.psau.edu.sa |
+| **GitHub Username** |Reem-Sultan1 |
+| **Repository Link** | https://github.com/Reem-Sultan1/OS-Assignment1-Reem-Sultan |
  
 ---
 
@@ -129,18 +129,22 @@
 
 ## Your Development Log
 
-### Entry 1 - [Date and Time]
-**What I did**:
+### Entry 1 - October 8, 2026 - 2:50 AM
 
-**Details**:
+What I did:
+Implemented Feature 1: Process Priority.
 
-**Challenges**:
+Details:
+Added a priority field to the Process class, updated the constructor to receive the priority, generated a random priority from 1 to 10 for each process, added a getPriority() method, and displayed the priority when each process entered the ready queue.
 
-**Solution**:
+Challenges:
+I got a constructor error after adding the new priority parameter. I also had an issue with special characters displaying incorrectly in the VS Code terminal and had some difficulty pushing my commit to GitHub.
 
-**Time spent**:
+Solution:
+I updated the Process constructor call to include the priority value and tested the program again. I enabled UTF-8 support to fix the terminal display, then verified that the feature worked correctly. I also checked that my local main branch was up to date with origin/main after pushing the commit.
 
----
+Time spent:
+About 2 hours.
 
 ### Entry 2 - [Date and Time]
 **What I did**:
