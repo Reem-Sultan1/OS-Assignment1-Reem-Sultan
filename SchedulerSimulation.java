@@ -30,6 +30,10 @@ class Process implements Runnable {
     private int timeQuantum; // Time slice (time quantum) allowed per CPU access (in milliseconds)
     private int remainingTime; // Time left for the process to finish its execution
     private int priority; // Process priority from 1 to 10 (10 is highest)
+    // Track process creation and waiting time
+    private long creationTime;
+    private long waitingStartTime;
+    private long totalWaitingTime;
 
     // Constructor to initialize the process with name, burst time, and time quantum
     public Process(String name, int burstTime, int timeQuantum, int priority) {
@@ -38,8 +42,20 @@ class Process implements Runnable {
         this.timeQuantum = timeQuantum;
         this.remainingTime = burstTime; // Initially, remaining time is equal to the burst time
         this.priority = priority;
+        // Initialize time tracking when the process is created
+        this.creationTime = System.currentTimeMillis(); 
+        this.waitingStartTime = this.creationTime; 
+        this.totalWaitingTime = 0; 
     }
+// Add the time spent waiting before the process starts running
+public void updateWaitingTime() {
+    totalWaitingTime += System.currentTimeMillis() - waitingStartTime;
+}
 
+// Start a new waiting period when the process returns to the ready queue
+public void startWaiting() {
+    waitingStartTime = System.currentTimeMillis();
+}
     // This method will be called when the thread for this process is started
     @Override
     public void run() {
@@ -141,6 +157,15 @@ class Process implements Runnable {
     public int getPriority() {
         return priority;
     }
+    // Return the total time the process spent waiting
+    public long getWaitingTime() {
+    return totalWaitingTime;
+}
+
+// Calculate turnaround time as waiting time + burst time
+   public long getTurnaroundTime() {
+    return totalWaitingTime + burstTime;
+}
 
     // Check if the process has finished (i.e., no remaining time)
     public boolean isFinished() {
@@ -170,6 +195,8 @@ private static int contextSwitches = 0;
         
         // Map to associate each thread with its respective process object
         Map<Thread, Process> processMap = new HashMap<>();
+        // Store all processes for the final summary table
+        Queue<Process> allProcesses = new LinkedList<>();
         
         // Print simulation header with elegant formatting
         System.out.println("\n" + Colors.BOLD + Colors.BRIGHT_CYAN + 
@@ -206,7 +233,8 @@ private static int contextSwitches = 0;
 
             // Create a new process object with a unique name, burst time, and the defined time quantum and priority
             Process process = new Process("P" + i, burstTime, timeQuantum , priority);
-            
+            // Store the process for the final summary table
+            allProcesses.add(process);
             // Add the process to the ready queue and the map
             addProcessToQueue(process, processQueue, processMap);
         }
@@ -243,6 +271,10 @@ private static int contextSwitches = 0;
             }
             System.out.println(Colors.BRIGHT_WHITE + "]" + Colors.RESET);
             System.out.println(Colors.BOLD + Colors.MAGENTA + "└" + "─".repeat(79) + Colors.RESET + "\n");
+            // Retrieve the process associated with the thread from the map
+            Process process = processMap.get(currentThread);
+           // Update the waiting time before the process starts running
+            process.updateWaitingTime();
             // Increment the context switch counter whenever a process starts running
             contextSwitches++;
             // Start the thread, which will run the process for one time quantum
@@ -255,13 +287,15 @@ private static int contextSwitches = 0;
                 System.out.println("Main thread interrupted.");
             }
             
-            // Retrieve the process associated with the thread from the map
-            Process process = processMap.get(currentThread);
+            
+            
             
             // Check if the process is not finished
             if (!process.isFinished()) {
                 // If the process still has remaining time, check if there are more processes in queue
                 if (!processQueue.isEmpty()) {
+                    // Start tracking a new waiting period before re-entering the ready queue
+                    process.startWaiting();
                     // Re-enqueue the process to give it another chance to run in the next round
                     addProcessToQueue(process, processQueue, processMap);
                 } else {
@@ -287,6 +321,18 @@ private static int contextSwitches = 0;
                           Colors.RESET + "\n");
         // Display the total number of context switches
         System.out.println("Total context switches: " + contextSwitches);
+        // Display the final process summary table
+       System.out.println("\nPROCESS SUMMARY");
+       System.out.printf("%-10s %-15s %-18s %-20s%n",
+        "Process", "Burst Time", "Waiting Time", "Turnaround Time");
+
+    for (Process process : allProcesses) {
+         System.out.printf("%-10s %-15d %-18d %-20d%n",
+            process.getName(),
+            process.getBurstTime(),
+            process.getWaitingTime(),
+            process.getTurnaroundTime());
+}
     }
 
     
