@@ -164,16 +164,22 @@ Time spent:
 About 45 minutes.
 ---
 
-### Entry 3 - [Date and Time]
-**What I did**:
+### Entry 3 - October 10, 2026 - around 2:30 AM
 
-**Details**:
+What I did:
+Finalized and tested Feature 3: Waiting Time and Turnaround Time Tracking.
 
-**Challenges**:
+Details:
+I completed the waiting time tracking for each process and added turnaround time calculation using waiting time plus burst time. I also created a final process summary table that displays the process name, burst time, waiting time, and turnaround time. I ran the full simulation again and verified that the table included all processes.
 
-**Solution**:
+Challenges:
+The main challenge was tracking the waiting time correctly because a process can return to the ready queue more than once in Round-Robin scheduling. I also needed to make sure that turnaround time was calculated correctly for every process.
 
-**Time spent**:
+Solution:
+I tracked each waiting period using System.currentTimeMillis() and added the waiting periods to the total waiting time. When an unfinished process returned to the ready queue, I started a new waiting period. I calculated turnaround time as waiting time plus burst time and manually checked several rows in the final output to confirm the calculations were correct.
+
+Time spent:
+About 1 hour.
 
 ---
 
@@ -246,7 +252,7 @@ About 45 minutes.
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+[I learned how Java can use threads to simulate multiple processes sharing CPU time. Each Process implements Runnable, and a Thread object is created to run that process. I learned that Thread.start() begins the execution of a thread, while Thread.join() makes the main thread wait until the current thread finishes its time quantum. I also understood how Thread.sleep() can be used to simulate the amount of time a process is executing. The Round-Robin ready queue helped me understand how processes can run for a limited time and then return to the queue if they are not finished. What surprised me most was how the thread methods, ready queue, and time quantum all work together to simulate CPU scheduling.]
 
 ## Question 2: What was the most challenging part of this assignment?
 
@@ -254,7 +260,7 @@ About 45 minutes.
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+[The most challenging part for me was tracking the waiting time correctly in Feature 3. A process does not always finish during its first time quantum, so it can return to the ready queue and wait again. At first, it was confusing to decide when the waiting period should start and when it should stop. I also had to make sure that the turnaround time was calculated correctly using the total waiting time and burst time. Another challenge was understanding where to place the new code without changing the original Round-Robin scheduling behavior. Testing the final summary table helped me confirm that the calculations were working correctly.]
 
 ## Question 3: How did you overcome the challenges you faced?
 
@@ -262,7 +268,7 @@ About 45 minutes.
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+[I worked on the assignment in small steps instead of changing the whole program at once. After adding each feature, I ran the program and checked the terminal output before making a commit. I re-read the README whenever I was unsure about a requirement, especially for the priority range, context switches, and waiting time tracking. I also used the existing comments and structure of the starter code to decide where my changes should go. When I had errors, such as the constructor error after adding priority, I checked which method call no longer matched the updated constructor and fixed it. This approach made debugging easier because I could identify which small change caused a problem.]
 
 ## Question 4: How can you apply multithreading concepts in real-world applications?
 
@@ -270,20 +276,23 @@ About 45 minutes.
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+[Multithreading can be used in many applications to perform different tasks without making the whole program wait for one task to finish. For example, a web browser can use different threads to load pages, play media, and respond to user input at the same time. A music application can use one thread to play audio while another thread updates the user interface or downloads content. Games can also use separate threads for graphics, input, networking, and background calculations. This assignment showed me how threads can share processing time and how scheduling controls when each task gets a chance to run. The same idea can help real applications stay responsive while several tasks are happening at the same time.]
 
 ### Optional: What would you like to learn more about?
 
 [Any topics related to threading or operating systems that you're curious about?]
 
+I would like to learn more about how operating systems handle multiple threads at the same time and how synchronization prevents conflicts between them.
 ### Optional: How confident do you feel about multithreading concepts now?
 
 [Beginner / Intermediate / Confident. What do you understand well? What needs more practice?]
 
+I feel more confident with the basic multithreading concepts, especially Thread.start(), Thread.join(), and how the ready queue works. I still need more practice with more complex synchronization problems.
+
 ### Optional: Feedback on the assignment
 
 [Any comments? Was it helpful? Too easy or hard? Suggestions?]
-
+The assignment was challenging at first, especially because it was my first time working with GitHub in this way, but it helped me understand multithreading and Round-Robin scheduling better through practical implementation.
 ---
 
 # Part C: Technical Answers (0.5 mark)
@@ -302,7 +311,7 @@ About 45 minutes.
 
 **Your Answer:** *(3-5 sentences)*
 
-[Write your answer here.]
+[A process is an independent program with its own memory space, while a thread is a smaller unit of execution that runs inside a process and can share memory with other threads. Threads are usually faster to create and have less overhead than creating separate operating system processes, and they can communicate more easily through shared objects. In this assignment, the Process class represents a simulated process, but each simulated process is actually executed using a real Java Thread. This can be seen in addProcessToQueue(), where the code creates a thread using new Thread(process), allowing the scheduler to manage the processes using the shared ready queue and process map.]
 
 ## Question 2: Ready Queue Behavior
 
@@ -314,7 +323,7 @@ About 45 minutes.
 
 **Your Answer:** *(3-5 sentences)*
 
-[Write your answer here.]
+[In my program run, I used P4 as an example because its burst time was 9060 ms while the time quantum was 5000 ms. P4 could not finish during its first CPU turn, so it was added back to the ready queue once. It then received another turn and completed its remaining execution time. This shows how Round-Robin scheduling gives unfinished processes another chance to run while allowing the other processes in the queue to execute.]
 
 Example from my output:
 ```
