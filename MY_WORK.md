@@ -196,16 +196,22 @@ About 1 hour.
 
 ---
 
-### Entry 5 - [Date and Time]
-**What I did**:
+### Entry 5 - October 10, 2026 - around 3:30 AM
 
-**Details**:
+What I did:
+Completed the remaining documentation in MY_WORK.md, including the Development Log Summary and final review of the written sections.
 
-**Challenges**:
+Details:
+I reviewed my reflection and technical answers, completed the summary sections, and checked that my answers were connected to my actual code and program output. I also reviewed the assignment checklist to see what was still missing before submission.
 
-**Solution**:
+Challenges:
+The main challenge was making sure that all required sections were completed and that no placeholders were left in the file.
 
-**Time spent**:
+Solution:
+I reviewed MY_WORK.md section by section and compared it with the final checklist to make sure the required documentation was complete.
+
+Time spent:
+About 30 minutes.
 
 ---
 
@@ -326,12 +332,19 @@ The assignment was challenging at first, especially because it was my first time
 [In my program run, I used P4 as an example because its burst time was 9060 ms while the time quantum was 5000 ms. P4 could not finish during its first CPU turn, so it was added back to the ready queue once. It then received another turn and completed its remaining execution time. This shows how Round-Robin scheduling gives unfinished processes another chance to run while allowing the other processes in the queue to execute.]
 
 Example from my output:
-```
-[Paste a relevant snippet from your program output here showing a process being re-queued]
+```[  ▶ P4 executing quantum [5000ms] 
+  ⚡ Quantum progress: [███████████████] 100%
+  ⏸ P4 completed quantum 5000ms │ Overall progress: [███████████░░░░░░░░░] 55%
+     Remaining time: 4060ms
+  ↻ P4 yields CPU for context switch
+
+  ➕ P4 added to ready queue | Priority: 3 │ Burst time: 9060ms
+┌─ Ready Queue ─────────────────────────────────────────────────────────────────
+│ [P6 → P7 → P8 → P9 → P10 → P3 → P4]
 ```
 
 **Explanation of example:**
-[Explain what is happening in the output snippet you pasted.]
+[In my program run, P4 had a burst time of 9060 ms while the time quantum was 5000 ms. Because P4 could not finish within its first time quantum, it was re-queued once and later received another CPU turn to complete its remaining execution time. This is how Round-Robin scheduling handles processes that need more than one time quantum. Re-queuing is important for fairness because it allows the other processes in the ready queue to receive CPU time instead of allowing one long process to use the CPU continuously.
 
 ## Question 3: Thread Lifecycle
 
@@ -342,15 +355,15 @@ Example from my output:
 **Your Answer:** *(3-5 sentences overall; one short explanation per state)*
 
 1. **New**: [When is P1 in the New state?]
-
+P1's thread is in the New state when it is created in addProcessToQueue() using new Thread(process) but has not started yet.
 2. **Runnable**: [When does P1 become Runnable?]
-
+P1 becomes Runnable when currentThread.start() is called, making the thread ready to be scheduled by the CPU.
 3. **Running**: [When is P1 Running?]
-
+ P1 is Running when its thread is selected to execute and the run() method begins processing its time quantum
 4. **Waiting**: [When and why would a thread be Waiting?]
-
+ During Thread.sleep(runTime), P1's thread temporarily waits while the execution time is simulated; separately, the main thread waits for P1 to finish by calling currentThread.join().
 5. **Terminated**: [When is P1 Terminated?]
-
+ P1's thread is Terminated when its run() method finishes. If the simulated process still has remaining time, it is re-queued and a new Thread is created for its next CPU turn.
 ## Question 4: Real-World Applications
 
 **Question**: Give **TWO** real-world examples where Round-Robin scheduling with threads would be useful. **At least one** must be an operating-system-level scenario (e.g., how an OS scheduler shares CPU time among running programs). The second can be any application you choose. For each, explain what the system is and **why Round-Robin fits** (fairness, responsiveness, predictability).
@@ -359,32 +372,32 @@ Example from my output:
 
 **Your Answer:** *(3-5 sentences per example)*
 
-### Example 1 (operating-system level): [Name of scenario]
+### Example 1 (operating-system level): [CPU Scheduling for Multiple Running Programs]
 
 **Description**:
 [Describe the real-world scenario.]
-
+A user may have several programs running at the same time, such as a web browser, VS Code, and a music player. The operating system must schedule the processes or threads belonging to these programs so they can share CPU time instead of allowing one task to use the CPU continuously.
 **Why Round-Robin works well here**:
 [Fairness, responsiveness, predictability?]
-
-### Example 2: [Name of application/scenario]
+Round-Robin gives each ready process or thread a limited time quantum before the CPU switches to another one. This improves fairness because every ready task gets a chance to run, responsiveness because one long-running task cannot block the others for too long, and predictability because tasks receive CPU time in repeated turns. The time quantum and context switches in this scenario are similar to the scheduling behavior in my simulation.
+### Example 2: [Web Server Handling Multiple User Requests]
 
 **Description**:
 [Describe the real-world scenario or application.]
-
+A web server may receive requests from many users at the same time, such as opening pages, submitting forms, or requesting data. These requests can be handled by different worker threads, and the system needs to give each active request a chance to make progress.
 **Why Round-Robin works well here**:
 [Fairness, responsiveness, predictability?]
-
+Round-Robin can schedule the active worker threads in turns so that one request does not dominate CPU time. This improves fairness between requests, keeps the server responsive to different users, and makes CPU access more predictable because each ready thread gets repeated opportunities to run. This is similar to my simulation, where processes use a time quantum and the CPU performs context switches between them.
 ## Summary
 
 **Key concepts I understood through these questions:**
-1.
-2.
-3.
+1. The difference between a process and a thread.
+2.How Round-Robin scheduling uses a ready queue, time quantum, and context switches.
+3.The main stages of the thread lifecycle and how Java thread methods affect them.
 
 **Concepts I need to study more:**
-1.
-2.
+1. Thread synchronization and safe sharing of data between threads.
+2.More advanced CPU scheduling algorithms and how they compare with Round-Robin.
 
 ---
 
