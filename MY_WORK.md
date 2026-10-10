@@ -39,7 +39,7 @@
 
 ## 🎥 Video Link
 
-**Video Link**: [Paste your video link here]
+**Video Link**: [ (https://drive.google.com/file/d/1baRVIazQzLPmhzaCY7eL1Nd718Ts_DyD/view?usp=drivesdk) ]
 
 > ⚠️ **WARNING:** The video must be **publicly accessible** ("Anyone with the link can view") on **Google Drive**, **YouTube (Unlisted or Public)** or any other cloud file-sharing system. A private, restricted or broken link counts as a **missing video (-1 mark)**.
 >
@@ -215,17 +215,22 @@ About 30 minutes.
 
 ---
 
-### Entry 6 - [Optional - Date and Time]
-**What I did**:
+### Entry 6 - October 10, 2026 - around 11:30 PM
 
-**Details**:
+What I did:
+Recorded and completed the final video demonstration for the assignment, uploaded it to Google Drive, and added the video link to MY_WORK.md.
 
-**Challenges**:
+Details:
+In the video, I showed my public GitHub repository, explained the three implemented features, ran the program using VS Code, explained the ready queue concept using my program output, and showed my commit history. After editing the video, I uploaded it to Google Drive and changed the sharing permission to "Anyone with the link can view."
 
-**Solution**:
+Challenges:
+The main challenge was keeping the video within the required 2–3 minute duration while still showing and explaining all of the required parts.
 
-**Time spent**:
+Solution:
+I prepared each section before recording, kept the explanations short and focused, and edited the final video to include all required parts within the time limit.
 
+Time spent:
+About 1 hour.
 ---
 
 ## Development Log Summary
