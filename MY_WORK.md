@@ -269,7 +269,7 @@ Next time, I would start the GitHub setup and documentation earlier and make sma
 
 **Your Answer:** *(5-7 sentences)*
 
-[I learned how Java can use threads to simulate multiple processes sharing CPU time. Each Process implements Runnable, and a Thread object is created to run that process. I learned that Thread.start() begins the execution of a thread, while Thread.join() makes the main thread wait until the current thread finishes its time quantum. I also understood how Thread.sleep() can be used to simulate the amount of time a process is executing. The Round-Robin ready queue helped me understand how processes can run for a limited time and then return to the queue if they are not finished. What surprised me most was how the thread methods, ready queue, and time quantum all work together to simulate CPU scheduling.]
+I learned how Java can use threads to simulate multiple processes sharing CPU time. Each Process implements Runnable, and a Thread object is created to run that process. I learned that Thread.start() begins the execution of a thread, while Thread.join() makes the main thread wait until the current thread finishes its time quantum. I also understood how Thread.sleep() can be used to simulate the amount of time a process is executing. The Round-Robin ready queue helped me understand how processes can run for a limited time and then return to the queue if they are not finished. What surprised me most was how the thread methods, ready queue, and time quantum all work together to simulate CPU scheduling.
 
 ## Question 2: What was the most challenging part of this assignment?
 
@@ -297,18 +297,17 @@ Multithreading can be used in many applications to perform different tasks witho
 
 ### Optional: What would you like to learn more about?
 
-[Any topics related to threading or operating systems that you're curious about?]
+
 
 I would like to learn more about how operating systems handle multiple threads at the same time and how synchronization prevents conflicts between them.
 ### Optional: How confident do you feel about multithreading concepts now?
 
-[Beginner / Intermediate / Confident. What do you understand well? What needs more practice?]
 
 I feel more confident with the basic multithreading concepts, especially Thread.start(), Thread.join(), and how the ready queue works. I still need more practice with more complex synchronization problems.
 
 ### Optional: Feedback on the assignment
 
-[Any comments? Was it helpful? Too easy or hard? Suggestions?]
+
 The assignment was challenging at first, especially because it was my first time working with GitHub in this way, but it helped me understand multithreading and Round-Robin scheduling better through practical implementation.
 ---
 
@@ -371,7 +370,8 @@ P1's thread is in the New state when it is created in addProcessToQueue() using 
 P1 becomes Runnable when currentThread.start() is called, making the thread ready to be scheduled by the CPU.
 3. **Running**: 
  P1 is Running when its thread is selected to execute and the run() method begins processing its time quantum
-4. **Waiting**: [When and why would a thread be Waiting?]
+4. **Waiting**:
+
  During Thread.sleep(runTime), P1's thread temporarily waits while the execution time is simulated; separately, the main thread waits for P1 to finish by calling currentThread.join().
 5. **Terminated**: 
  P1's thread is Terminated when its run() method finishes. If the simulated process still has remaining time, it is re-queued and a new Thread is created for its next CPU turn.
